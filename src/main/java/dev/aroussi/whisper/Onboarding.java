@@ -5,7 +5,9 @@ import com.intellij.notification.NotificationAction;
 import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.ActionManager;
+import com.intellij.openapi.actionSystem.ActionPlaces;
 import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.options.ShowSettingsUtil;
 import com.intellij.openapi.project.Project;
@@ -65,7 +67,10 @@ public final class Onboarding implements StartupActivity.DumbAware {
             n.addAction(NotificationAction.create("Run Local Setup", (e, notif) -> {
                 notif.expire();
                 AnAction action = ActionManager.getInstance().getAction("dev.aroussi.whisper.SetupLocal");
-                if (action != null) action.actionPerformed(e);
+                if (action != null) {
+                    ActionManager.getInstance().tryToExecute(action, e.getInputEvent(),
+                            null, ActionPlaces.NOTIFICATION, true);
+                }
             }));
         }
         n.addAction(NotificationAction.createSimple("Open Settings", () -> {

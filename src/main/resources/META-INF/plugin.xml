@@ -1,39 +1,36 @@
-<idea-plugin>
+<idea-plugin url="https://github.com/roussi/whisper">
     <id>dev.aroussi.whisper</id>
-    <name>Whisper (Speech To Text)</name>
-    <vendor email="roussi.abdelghani@gmail.com" url="https://github.com/roussi/whisper">Aroussi</vendor>
+    <name>Whisper Speech to Text</name>
+    <vendor email="roussi.abdelghani@gmail.com" url="https://www.linkedin.com/in/abdelghani-r-7518328a/">Abdelghani Roussi</vendor>
 
     <description><![CDATA[
-        <h2>Voice-to-text dictation for JetBrains IDEs — powered by OpenAI Whisper.</h2>
+        Voice-to-text dictation for JetBrains IDEs using OpenAI Whisper.
+        Speak instead of type — anywhere a caret is focused.
 
-        <p>Stop typing. Start talking. Whisper turns your voice into text directly inside the IDE,
-        in any focused field — editor, terminal, search, commit message, AI chat panels, anywhere.</p>
-
-        <h3>Highlights</h3>
+        <h3>Features</h3>
         <ul>
-            <li><b>Three backends</b> — Local (free, fully offline via whisper.cpp), OpenAI Whisper API, or Groq (Whisper Large V3, fastest).</li>
-            <li><b>Three dictation modes</b> —
+            <li>Three transcription backends: local (whisper.cpp, fully offline), OpenAI Whisper API, Groq (Whisper Large V3).</li>
+            <li>Three dictation modes:
                 <i>Dictate</i> (raw transcription),
-                <i>Code</i> (spoken punctuation → symbols, filler words stripped, casing fixed),
-                <i>Command</i> (formatted as a clean coding instruction for AI chat).
+                <i>Code</i> (spoken punctuation mapped to symbols, filler words removed),
+                <i>Command</i> (formatted as a coding instruction for AI chat).
             </li>
-            <li><b>Inserts anywhere</b> — direct caret insertion in the editor, clipboard-paste fallback for tool windows and external apps.</li>
-            <li><b>Multilingual</b> — supports every language Whisper does (en, fr, de, es, it, pt, ja, zh, …).</li>
-            <li><b>Zero cloud by default</b> — Local backend runs entirely on your machine. Audio never leaves your computer unless you opt in to a cloud backend.</li>
-            <li><b>One-shortcut workflow</b> — press, speak, press again. Status bar shows recording state.</li>
+            <li>Inserts at the editor caret. Falls back to clipboard paste for tool windows, terminals, and external apps.</li>
+            <li>Multilingual: supports the languages Whisper supports (en, fr, de, es, it, pt, ja, zh, and more).</li>
+            <li>Local backend runs entirely on your machine. No audio leaves your computer unless you select a cloud backend.</li>
         </ul>
 
         <h3>Quick start</h3>
         <ol>
             <li>Install <code>sox</code> (<code>brew install sox</code>) or <code>ffmpeg</code> for audio capture.</li>
-            <li>Run <b>Whisper: Setup Local Transcription</b> to install whisper.cpp + a model (~150 MB).</li>
-            <li>Press <b>⌘M</b> (macOS) / <b>Ctrl+M</b> (Windows/Linux) to start. Press again to stop and insert.</li>
+            <li>Open any project — Whisper detects missing setup and shows a prompt. Click <b>Run Local Setup</b> to install whisper.cpp and a model (~150 MB), or <b>Open Settings</b> to configure an OpenAI/Groq API key.</li>
+            <li>Press <b>Cmd+M</b> (macOS) or <b>Ctrl+M</b> (Windows/Linux) to start recording. Press again to stop and insert the transcription.</li>
         </ol>
 
         <h3>Configuration</h3>
         <p>Settings → Tools → Whisper. Configure backend, dictation mode, language, API keys, and recording tool.</p>
 
-        <p><i>Inspired by superwhisper.com — built into your IDE, free, and open.</i></p>
+        <p>Source code, issue tracker, and documentation: <a href="https://github.com/roussi/whisper">github.com/roussi/whisper</a></p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>

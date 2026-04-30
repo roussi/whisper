@@ -22,6 +22,7 @@ java {
 dependencies {
     intellijPlatform {
         intellijIdeaCommunity("2024.2")
+        pluginVerifier()
     }
 }
 
@@ -42,6 +43,14 @@ intellijPlatform {
     publishing {
         token.set(providers.environmentVariable("JETBRAINS_MARKETPLACE_TOKEN"))
         // channels.set(listOf("default"))   // use "beta" or "eap" for pre-release channels
+    }
+
+    pluginVerification {
+        ides {
+            ide("IC", "2024.2")
+            ide("IC", "2024.3")
+            ide("IC", "2025.1")
+        }
     }
 
     signing {
