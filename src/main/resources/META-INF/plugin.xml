@@ -1,0 +1,76 @@
+<idea-plugin>
+    <id>dev.aroussi.whisper</id>
+    <name>Whisper</name>
+    <vendor email="roussi.abdelghani@gmail.com" url="https://github.com/roussi/whisper">Aroussi</vendor>
+
+    <description><![CDATA[
+        <h2>Voice-to-text dictation for JetBrains IDEs — powered by OpenAI Whisper.</h2>
+
+        <p>Stop typing. Start talking. Whisper turns your voice into text directly inside the IDE,
+        in any focused field — editor, terminal, search, commit message, AI chat panels, anywhere.</p>
+
+        <h3>Highlights</h3>
+        <ul>
+            <li><b>Three backends</b> — Local (free, fully offline via whisper.cpp), OpenAI Whisper API, or Groq (Whisper Large V3, fastest).</li>
+            <li><b>Three dictation modes</b> —
+                <i>Dictate</i> (raw transcription),
+                <i>Code</i> (spoken punctuation → symbols, filler words stripped, casing fixed),
+                <i>Command</i> (formatted as a clean coding instruction for AI chat).
+            </li>
+            <li><b>Inserts anywhere</b> — direct caret insertion in the editor, clipboard-paste fallback for tool windows and external apps.</li>
+            <li><b>Multilingual</b> — supports every language Whisper does (en, fr, de, es, it, pt, ja, zh, …).</li>
+            <li><b>Zero cloud by default</b> — Local backend runs entirely on your machine. Audio never leaves your computer unless you opt in to a cloud backend.</li>
+            <li><b>One-shortcut workflow</b> — press, speak, press again. Status bar shows recording state.</li>
+        </ul>
+
+        <h3>Quick start</h3>
+        <ol>
+            <li>Install <code>sox</code> (<code>brew install sox</code>) or <code>ffmpeg</code> for audio capture.</li>
+            <li>Run <b>Whisper: Setup Local Transcription</b> to install whisper.cpp + a model (~150 MB).</li>
+            <li>Press <b>⌘M</b> (macOS) / <b>Ctrl+M</b> (Windows/Linux) to start. Press again to stop and insert.</li>
+        </ol>
+
+        <h3>Configuration</h3>
+        <p>Settings → Tools → Whisper. Configure backend, dictation mode, language, API keys, and recording tool.</p>
+
+        <p><i>Inspired by superwhisper.com — built into your IDE, free, and open.</i></p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="dev.aroussi.whisper.WhisperSettings"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="dev.aroussi.whisper.WhisperConfigurable"
+                id="dev.aroussi.whisper.WhisperConfigurable"
+                displayName="Whisper"/>
+        <statusBarWidgetFactory
+                id="dev.aroussi.whisper.WhisperStatusBar"
+                implementation="dev.aroussi.whisper.WhisperStatusBarFactory"/>
+        <notificationGroup id="Whisper" displayType="BALLOON"/>
+        <postStartupActivity implementation="dev.aroussi.whisper.Onboarding"/>
+    </extensions>
+
+    <actions>
+        <action id="dev.aroussi.whisper.ToggleRecording"
+                class="dev.aroussi.whisper.actions.ToggleRecordingAction"
+                text="Whisper: Toggle Recording"
+                description="Start or stop voice dictation">
+            <keyboard-shortcut keymap="$default" first-keystroke="meta M"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="control M"/>
+        </action>
+        <action id="dev.aroussi.whisper.SetMode"
+                class="dev.aroussi.whisper.actions.SetModeAction"
+                text="Whisper: Set Dictation Mode"/>
+        <action id="dev.aroussi.whisper.SelectBackend"
+                class="dev.aroussi.whisper.actions.SelectBackendAction"
+                text="Whisper: Select Transcription Backend"/>
+        <action id="dev.aroussi.whisper.SetupLocal"
+                class="dev.aroussi.whisper.actions.SetupLocalAction"
+                text="Whisper: Setup Local Transcription (free)"/>
+        <action id="dev.aroussi.whisper.SetupGuide"
+                class="dev.aroussi.whisper.actions.SetupGuideAction"
+                text="Whisper: Show Setup Guide"/>
+    </actions>
+</idea-plugin>
