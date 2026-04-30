@@ -22,9 +22,9 @@ public final class SelectBackendAction extends AnAction {
                     @Override
                     public @NotNull String getTextFor(WhisperSettings.Backend value) {
                         return switch (value) {
-                            case LOCAL -> "Local (free) — whisper.cpp on your machine";
-                            case OPENAI -> "OpenAI — Whisper API (requires key)";
-                            case GROQ -> "Groq — Whisper Large V3 (fast, requires key)";
+                            case LOCAL -> "Local (free) - whisper.cpp on your machine";
+                            case OPENAI -> "OpenAI - Whisper API (requires key)";
+                            case GROQ -> "Groq - Whisper Large V3 (fast, requires key)";
                         };
                     }
                     @Override

@@ -5,7 +5,7 @@
 
     <description><![CDATA[
         Voice-to-text dictation for JetBrains IDEs using OpenAI Whisper.
-        Speak instead of type — anywhere a caret is focused.
+        Speak instead of type, anywhere a caret is focused.
 
         <h3>Features</h3>
         <ul>
@@ -23,12 +23,12 @@
         <h3>Quick start</h3>
         <ol>
             <li>Install <code>sox</code> (<code>brew install sox</code>) or <code>ffmpeg</code> for audio capture.</li>
-            <li>Open any project — Whisper detects missing setup and shows a prompt. Click <b>Run Local Setup</b> to install whisper.cpp and a model (~150 MB), or <b>Open Settings</b> to configure an OpenAI/Groq API key.</li>
+            <li>Open any project (Whisper detects missing setup and shows a prompt). Click <b>Run Local Setup</b> to install whisper.cpp and a model (~150 MB), or <b>Open Settings</b> to configure an OpenAI/Groq API key.</li>
             <li>Press <b>Cmd+M</b> (macOS) or <b>Ctrl+M</b> (Windows/Linux) to start recording. Press again to stop and insert the transcription.</li>
         </ol>
 
         <h3>Configuration</h3>
-        <p>Settings → Tools → Whisper. Configure backend, dictation mode, language, API keys, and recording tool.</p>
+        <p>Settings -> Tools -> Whisper. Configure backend, dictation mode, language, API keys, and recording tool.</p>
 
         <p>Source code, issue tracker, and documentation: <a href="https://github.com/roussi/whisper">github.com/roussi/whisper</a></p>
     ]]></description>

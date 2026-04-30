@@ -70,13 +70,13 @@ public final class WhisperController {
 
                     if (s.backend == WhisperSettings.Backend.OPENAI) {
                         if (s.openaiApiKey.isEmpty()) {
-                            notifyError(project, "OpenAI API key not set. Configure under Settings → Tools → Whisper.");
+                            notifyError(project, "OpenAI API key not set. Configure under Settings -> Tools -> Whisper.");
                             return;
                         }
                         cfg.apiKey = s.openaiApiKey;
                     } else if (s.backend == WhisperSettings.Backend.GROQ) {
                         if (s.groqApiKey.isEmpty()) {
-                            notifyError(project, "Groq API key not set. Configure under Settings → Tools → Whisper.");
+                            notifyError(project, "Groq API key not set. Configure under Settings -> Tools -> Whisper.");
                             return;
                         }
                         cfg.apiKey = s.groqApiKey;

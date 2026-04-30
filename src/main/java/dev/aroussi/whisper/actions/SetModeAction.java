@@ -23,9 +23,9 @@ public final class SetModeAction extends AnAction {
                     @Override
                     public @NotNull String getTextFor(WhisperSettings.Mode value) {
                         return switch (value) {
-                            case DICTATE -> "Dictate — Raw transcription as-is";
-                            case CODE -> "Code — Cleaned for code (punctuation symbols)";
-                            case COMMAND -> "Command — Format as instruction/prompt";
+                            case DICTATE -> "Dictate - Raw transcription as-is";
+                            case CODE -> "Code - Cleaned for code (punctuation symbols)";
+                            case COMMAND -> "Command - Format as instruction/prompt";
                         };
                     }
                     @Override

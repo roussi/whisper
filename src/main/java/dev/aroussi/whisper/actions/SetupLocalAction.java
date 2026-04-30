@@ -26,17 +26,17 @@ public final class SetupLocalAction extends AnAction {
     public void actionPerformed(@NotNull AnActionEvent e) {
         Project project = e.getProject();
         List<ModelOption> models = List.of(
-                new ModelOption("tiny", "~75 MB — fastest"),
-                new ModelOption("base", "~150 MB — balanced (recommended)"),
-                new ModelOption("small", "~500 MB — better accuracy"),
-                new ModelOption("medium", "~1.5 GB — high accuracy")
+                new ModelOption("tiny", "~75 MB - fastest"),
+                new ModelOption("base", "~150 MB - balanced (recommended)"),
+                new ModelOption("small", "~500 MB - better accuracy"),
+                new ModelOption("medium", "~1.5 GB - high accuracy")
         );
 
         JBPopupFactory.getInstance().createListPopup(
                 new BaseListPopupStep<>("Select model size", models) {
                     @Override
                     public @NotNull String getTextFor(ModelOption value) {
-                        return value.name() + " — " + value.description();
+                        return value.name() + " - " + value.description();
                     }
                     @Override
                     public @Nullable PopupStep<?> onChosen(ModelOption selected, boolean finalChoice) {
