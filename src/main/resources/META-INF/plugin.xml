@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>dev.aroussi.whisper</id>
-    <name>Whisper</name>
+    <name>Whisper (Speech To Text)</name>
     <vendor email="roussi.abdelghani@gmail.com" url="https://github.com/roussi/whisper">Aroussi</vendor>
 
     <description><![CDATA[

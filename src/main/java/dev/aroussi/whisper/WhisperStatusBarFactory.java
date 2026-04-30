@@ -1,6 +1,7 @@
 package dev.aroussi.whisper;
 
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.IconLoader;
 import com.intellij.openapi.util.NlsContexts;
 import com.intellij.openapi.wm.CustomStatusBarWidget;
 import com.intellij.openapi.wm.StatusBar;
@@ -64,6 +65,8 @@ public final class WhisperStatusBarFactory implements StatusBarWidgetFactory {
     }
 
     private static final class WhisperPanel extends JPanel {
+        private static final Icon MIC_ICON =
+                IconLoader.getIcon("/icons/mic.svg", WhisperPanel.class);
         private final Project project;
         private Timer pulseTimer;
         private float pulse = 0f;
@@ -99,8 +102,8 @@ public final class WhisperStatusBarFactory implements StatusBarWidgetFactory {
         @Override
         public Dimension getPreferredSize() {
             FontMetrics fm = getFontMetrics(getFont());
-            int w = fm.stringWidth(currentLabel()) + 24;
-            return new Dimension(w, fm.getHeight() + 4);
+            int w = fm.stringWidth(currentLabel()) + MIC_ICON.getIconWidth() + 14;
+            return new Dimension(w, Math.max(fm.getHeight() + 4, MIC_ICON.getIconHeight() + 4));
         }
 
         private String currentLabel() {
@@ -120,31 +123,36 @@ public final class WhisperStatusBarFactory implements StatusBarWidgetFactory {
             FontMetrics fm = g2.getFontMetrics();
 
             WhisperController c = WhisperController.getInstance();
-            int dotDiameter = 10;
-            int dotX = 4;
-            int dotY = (getHeight() - dotDiameter) / 2;
+            int leadingX = 4;
+            int textOffset;
 
-            Color dotColor;
-            if (c.isRecording()) {
-                int alpha = (int) (140 + 115 * pulse);
-                dotColor = new Color(229, 57, 53, alpha);
-                g2.setColor(new Color(229, 57, 53, 60));
-                int glow = (int) (4 * pulse);
-                g2.fillOval(dotX - glow, dotY - glow, dotDiameter + glow * 2, dotDiameter + glow * 2);
-            } else if (c.isTranscribing) {
-                int alpha = (int) (140 + 115 * pulse);
-                dotColor = new Color(255, 167, 38, alpha);
+            if (c.isRecording() || c.isTranscribing) {
+                int dotDiameter = 10;
+                int dotY = (getHeight() - dotDiameter) / 2;
+                Color dotColor;
+                if (c.isRecording()) {
+                    int alpha = (int) (140 + 115 * pulse);
+                    dotColor = new Color(229, 57, 53, alpha);
+                    g2.setColor(new Color(229, 57, 53, 60));
+                    int glow = (int) (4 * pulse);
+                    g2.fillOval(leadingX - glow, dotY - glow,
+                            dotDiameter + glow * 2, dotDiameter + glow * 2);
+                } else {
+                    int alpha = (int) (140 + 115 * pulse);
+                    dotColor = new Color(255, 167, 38, alpha);
+                }
+                g2.setColor(dotColor);
+                g2.fillOval(leadingX, dotY, dotDiameter, dotDiameter);
+                textOffset = leadingX + dotDiameter + 6;
             } else {
-                dotColor = new Color(getForeground().getRed(), getForeground().getGreen(),
-                        getForeground().getBlue(), 140);
+                int iconY = (getHeight() - MIC_ICON.getIconHeight()) / 2;
+                MIC_ICON.paintIcon(this, g2, leadingX, iconY);
+                textOffset = leadingX + MIC_ICON.getIconWidth() + 5;
             }
-            g2.setColor(dotColor);
-            g2.fillOval(dotX, dotY, dotDiameter, dotDiameter);
 
-            int textX = dotX + dotDiameter + 6;
             int textY = (getHeight() + fm.getAscent() - fm.getDescent()) / 2;
             g2.setColor(getForeground());
-            g2.drawString(currentLabel(), textX, textY);
+            g2.drawString(currentLabel(), textOffset, textY);
             g2.dispose();
         }
     }
