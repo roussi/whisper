@@ -213,4 +213,4 @@ Requires JDK 21.
 
 ## License
 
-[MIT](LICENSE) © Roussi Abdelghani
+[Apache License 2.0](LICENSE) © Abdelghani Roussi
