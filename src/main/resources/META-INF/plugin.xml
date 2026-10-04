@@ -23,7 +23,7 @@
         <h3>Quick start</h3>
         <ol>
             <li>Install <code>sox</code> (<code>brew install sox</code>) or <code>ffmpeg</code> for audio capture.</li>
-            <li>Open any project (Whisper detects missing setup and shows a prompt). Click <b>Run Local Setup</b> to install whisper.cpp and a model (~150 MB), or <b>Open Settings</b> to configure an OpenAI/Groq API key.</li>
+            <li>Open the <b>Whisper</b> tool window or <b>Settings → Tools → Whisper</b>. Install whisper.cpp and a model (~150 MB for base), or configure an OpenAI/Groq API key, then click <b>Apply</b>.</li>
             <li>Press <b>Cmd+M</b> (macOS) or <b>Ctrl+M</b> (Windows/Linux) to start recording. Press again to stop and insert the transcription.</li>
         </ol>
 
@@ -45,8 +45,12 @@
         <statusBarWidgetFactory
                 id="dev.aroussi.whisper.WhisperStatusBar"
                 implementation="dev.aroussi.whisper.WhisperStatusBarFactory"/>
+        <toolWindow
+                id="Whisper"
+                anchor="right"
+                icon="/icons/mic.svg"
+                factoryClass="dev.aroussi.whisper.WhisperToolWindowFactory"/>
         <notificationGroup id="Whisper" displayType="BALLOON"/>
-        <postStartupActivity implementation="dev.aroussi.whisper.Onboarding"/>
     </extensions>
 
     <actions>

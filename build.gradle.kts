@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "dev.aroussi"
-version = "1.0.0"
+version = "1.1.1"
 
 repositories {
     mavenCentral()
@@ -30,13 +30,26 @@ intellijPlatform {
     pluginConfiguration {
         ideaVersion {
             sinceBuild.set("242")
-            untilBuild.set("261.*")
+            untilBuild.set("262.*")
         }
         changeNotes.set("""
+            <h3>1.1.1</h3>
+            <ul>
+                <li>Extend IDE compatibility to build 262.*.</li>
+            </ul>
+            <h3>1.1.0</h3>
+            <ul>
+                <li>New <b>Whisper tool window</b> on the right sidebar — embeds the full settings UI with Apply and Reset buttons. No need to open Settings every time.</li>
+                <li>Redesigned settings UI: card-style backend picker (Local / OpenAI / Groq) with Ready/Setup status badge per card.</li>
+                <li>Local backend: install whisper.cpp + model directly from Settings (no separate action), live status, custom-binary override.</li>
+                <li>Cloud backends: masked API key fields with inline <i>Test</i> button to verify the key against the provider.</li>
+                <li>Audio section: detected sox/ffmpeg paths shown inline; install hint when neither is present.</li>
+                <li>Language picker suggests common languages and still accepts custom language codes.</li>
+                <li>Hotkey reminder shown directly in Settings.</li>
+            </ul>
             <h3>1.0.0</h3>
             <ul>
-                <li>Initial release release - voice-to-text dictation via whisper.cpp / OpenAI / Groq</li>
-                <li>Updated description and marketplace metadata</li>
+                <li>Initial release - voice-to-text dictation via whisper.cpp / OpenAI / Groq.</li>
             </ul>
         """.trimIndent())
     }

@@ -54,9 +54,11 @@ Speak instead of type - anywhere a caret is focused.
 
 Whisper records audio via `sox` or `ffmpeg`. Install one - see [Requirements](#requirements).
 
-### 2. First launch - automatic setup prompt
+### 2. Configure the backend
 
-When you open a project, the plugin detects missing setup and shows a notification:
+Open the **Whisper** tool window on the right sidebar or **Settings → Tools → Whisper** to see setup status and configure a backend. Click **Apply** to save changes; **Reset** discards pending changes.
+
+For the guided setup notification, press **Shift twice** (Search Everywhere) and run **Whisper: Show Setup Guide**:
 
 <p align="center">
   <img src="docs/screenshots/01-setup-prompt.png" alt="Setup prompt" width="600"/>
@@ -65,11 +67,11 @@ When you open a project, the plugin detects missing setup and shows a notificati
 - **Run Local Setup** - installs whisper.cpp + a model (free, offline, recommended).
 - **Open Settings** - configure an OpenAI or Groq API key instead.
 
-If you dismiss the prompt, you can re-trigger it anytime: press **Shift twice** (Search Everywhere) and run **Whisper: Show Setup Guide**.
+The guide is available on demand; it no longer opens automatically at startup.
 
 ### 3. Pick a model
 
-Choose the size that matches your hardware and accuracy needs:
+Choose the size that matches your hardware and accuracy needs. In the settings panel, click **Install / Update** to download it, then **Apply** to save the selection:
 
 <p align="center">
   <img src="docs/screenshots/02-model-picker.png" alt="Model picker" width="500"/>

@@ -7,25 +7,16 @@ import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionPlaces;
 import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.options.ShowSettingsUtil;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.startup.StartupActivity;
 import com.intellij.openapi.util.SystemInfo;
 import dev.aroussi.whisper.recorder.Recorder;
 import dev.aroussi.whisper.setup.LocalSetup;
-import org.jetbrains.annotations.NotNull;
 
 import java.awt.Desktop;
 import java.net.URI;
 
-public final class Onboarding implements StartupActivity.DumbAware {
-
-    @Override
-    public void runActivity(@NotNull Project project) {
-        ApplicationManager.getApplication().invokeLater(() -> checkAndPrompt(project));
-    }
+public final class Onboarding {
 
     public static void checkAndPrompt(Project project) {
         WhisperSettings.State s = WhisperSettings.getInstance().getState();
